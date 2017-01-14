@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <elementList>
+    <!--view - имя префаба для отображения в меню -->
+    <!--uiBg - имя картинки бекграунда тела в меню-->
+    <!--listSort - сортировка отображения тела -->
+    <element id="body1" view="Body1" uiBg="BodyBg" listSort="1"/>
+    <element id="body2" view="Body2" uiBg="BodyBg" listSort="2"/>
+    <element id="body3" view="Body3" uiBg="BodyBg" listSort="3"/>
+    <element id="body4" view="Body4" uiBg="BodyBg" listSort="4"/>
+  </elementList>
+ </data> 

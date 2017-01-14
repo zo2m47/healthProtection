@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <elementList>
+    <element id="1" userName ="User 1" lostUnlockedRound="round2" unlockedAntiBodies="antiBody1" slotsCounter="2"/>
+    <element id="2" userName ="User 2" lostUnlockedRound="round3" unlockedAntiBodies="antiBody1;antiBody2" slotsCounter="3"/>
+  </elementList>
+ </data> 

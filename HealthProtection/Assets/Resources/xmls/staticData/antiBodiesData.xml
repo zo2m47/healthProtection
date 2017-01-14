@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <elementList>
+    <!--attack - сила атаки антитела-->
+    <!--speed - скорость атитела-->
+    <!--view - имя префаба-->
+    <element id ="antiBody1" speed="500" attack="1" view="AntiBody1"/>
+    <element id ="antiBody2" speed="500" attack="2" view="AntiBody1"/>
+    <element id ="antiBody3" speed="500" attack="3" view="AntiBody1"/>
+    <element id ="antiBody4" speed="500" attack="4" view="AntiBody1"/>
+    <element id ="antiBody5" speed="500" attack="5" view="AntiBody1"/>
+  </elementList>
+ </data> 

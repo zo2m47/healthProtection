@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <elementList>
+    <!--bgView - картинка что размещена на фоне игрового раунда-->
+    <!--core - id ядра которое используется в этом раунде-->
+    <!--view -  имя префаба раунда - уже самого игрового процесса-->
+    <!--infestedAreaPlace - названия game objecta координаты которого надо использовать для размещения зараженной области на теле -->
+    <!--body - id тела к которому пренадлежит этот раунд-->
+    <!--passedRounds - id раундов которые надо пройти для тгого чтоб этот раунд был доступен -->
+    <!--infestedAreaView - Картинка отображения  этой зараженной зоны на теле-->
+    <element id ="round1" bgView="Bg" core ="core1" view="BaseRound" infestedAreaPlace="InfestedArea1" body="body1" passedRounds="" infestedAreaView="InfestedAreaView1">
+      <!--настройки паралаксов -->
+      <parallaxes>
+        <!--index - очередь размещения паралакса -->
+        <!--index - название картинки -->
+        <!--deltaMove - скорость смещения относительная движения камеры-->
+        <parallax index ="1" view ="Parallax1" deltaMove ="2"/>
+        <parallax index ="2" view ="Parallax2" deltaMove ="3"/>
+        <parallax index ="3" view ="Parallax3" deltaMove ="4"/>
+      </parallaxes>
+      <!--настройки атак -->
+      <attacks>
+        <!--virus - id вируса который будет атаковать-->
+        <!--start  - начало времени для атаки-->
+        <!--end - конец времени для атаки-->
+        <!--counter - количество атак данным вирусом в заданый промежуток времени -->
+        <attack virus="virus1" start ="0" end="5" counter="5"/>
+        <attack virus="virus1" start ="5" end="10" counter="6"/>
+        <attack virus="virus1" start ="10" end="15" counter="10"/>
+      </attacks>
+    </element>
+    <element id ="round2" bgView="Bg" core ="core1" view="BaseRound" infestedAreaPlace="InfestedArea2" body="body1" passedRounds="round1" infestedAreaView="InfestedAreaView1">
+      <parallaxes>
+        <parallax index ="1" view ="Parallax1" deltaMove ="2"/>
+        <parallax index ="2" view ="Parallax2" deltaMove ="3"/>
+        <parallax index ="3" view ="Parallax3" deltaMove ="4"/>
+      </parallaxes>
+      <attacks>
+        <attack virus="virus1" start ="0" end="5" counter="5"/>
+        <attack virus="virus1" start ="5" end="10" counter="6"/>
+        <attack virus="virus1" start ="10" end="15" counter="10"/>
+      </attacks>
+    </element>
+    <element id ="round3" bgView="Bg" core ="core1" view="BaseRound" infestedAreaPlace="InfestedArea3" body="body1" passedRounds="round1;round2" infestedAreaView="InfestedAreaView1">
+      <parallaxes>
+        <parallax index ="1" view ="Parallax1" deltaMove ="2"/>
+        <parallax index ="2" view ="Parallax2" deltaMove ="3"/>
+        <parallax index ="3" view ="Parallax3" deltaMove ="4"/>
+      </parallaxes>
+      <attacks>
+        <attack virus="virus1" start ="0" end="5" counter="5"/>
+        <attack virus="virus1" start ="5" end="10" counter="6"/>
+        <attack virus="virus1" start ="10" end="15" counter="10"/>
+      </attacks>
+    </element>
+  </elementList>
+</data> 

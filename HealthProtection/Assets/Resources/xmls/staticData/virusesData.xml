@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <elementList>
+    <!--attack - сила атаки вируса-->
+    <!--health - жизни вируса-->
+    <!--speed - скорость передвижения вируса-->
+    <!--view - имя префаба-->
+    <element id ="virus1" attack="1" health="1" speed ="50" view="Virus1"/>
+  </elementList>
+ </data> 
