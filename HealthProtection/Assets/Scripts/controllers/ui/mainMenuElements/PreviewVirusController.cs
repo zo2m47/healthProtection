@@ -5,7 +5,7 @@ using UnityEngine.UI;
  * Controller of beetle preview in main menu 
  * 
  * */
-public class PreviewVirusController : MonoBehaviour, ITouchCommand
+public class PreviewVirusController : UiElementTouchableController
 {
     [SerializeField]
     private Image _image;
@@ -32,34 +32,10 @@ public class PreviewVirusController : MonoBehaviour, ITouchCommand
         _data = l_data;
         _image.sprite = Resources.Load<Sprite>(_data.viewImageUrl);
         _tfName.text = _data.name;
-    }
-    /*ITouchCommand release 
-     * */
-    public bool draggable
-    {
-        get
+        if (!gameObject.active)
         {
-            return true;
+            gameObject.SetActive(true);
         }
     }
-
-    public void TouchClick()
-    {
-
-    }
-
-    public void TouchMoved(Vector3 movedPosition)
-    {
-
-    }
-
-    public void TouchStartDrag()
-    {
-        //TODO show view with info 
-    }
-
-    public void TouchStopDrag()
-    {
-        //TODO hide view with info 
-    }
+  
 }

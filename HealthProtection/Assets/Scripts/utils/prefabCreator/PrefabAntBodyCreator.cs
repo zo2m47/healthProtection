@@ -9,10 +9,17 @@ public class PrefabAntBodyCreator
     {
         return PrefabCreatorManager.Instance.InstanceComponent<AntiBodyBaseGameController>(antiBody.viewPrefabUrl, position);
     }
-    //creat instance for ui 
+    //creat instance for preview in ui 
     public static PreviewAntiBodyController CreatAntiBodyPreview(GameObject go)
     {
         string prefabUrl = UrlPrefabs.antiBodyPreviewItem;
         return PrefabCreatorManager.Instance.InstanceComponent<PreviewAntiBodyController>(prefabUrl, Vector3.zero, go,1,1,false,false);
     }
+    //creat instance for selected in UI 
+    public static SelectedAntiBodyController CreatAntiBodySelected(GameObject go)
+    {
+        string prefabUrl = UrlPrefabs.selectedAntiBodyItem;
+        return PrefabCreatorManager.Instance.InstanceComponent<SelectedAntiBodyController>(prefabUrl, Vector3.zero, go, 1, 1, false, false);
+    }
+
 }

@@ -1,9 +1,22 @@
 ﻿public class UrlImages
 {
     /*
+     * images names
+     * */
+    private const string EMPTY_ANTI_BODY = "EmptySlot";
+    /*
      * image  
      * */
     private const string IMAGES = "images/";
+    //ui
+    private const string UI_ELEMENTS = "ui/";
+    public static string emptyAntiBody
+    {
+        get
+        {
+            return IMAGES + UI_ELEMENTS + EMPTY_ANTI_BODY;
+        }
+    }
     //background 
     private const string BACK_GROUND = "backGrounds/";
     public static string backGrounds

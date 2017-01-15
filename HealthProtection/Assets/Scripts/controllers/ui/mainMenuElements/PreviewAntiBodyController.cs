@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 /**
  * controller of anti body in mainMenu preview 
  * */
-public class PreviewAntiBodyController : MonoBehaviour, ITouchCommand
+public class PreviewAntiBodyController : UiElementTouchableController
 {
     [SerializeField]
     private Image _image;
@@ -13,7 +14,6 @@ public class PreviewAntiBodyController : MonoBehaviour, ITouchCommand
     private Text _tfName;
 
     private AntiBodyVO _data;
-    private bool _selected = false;
 
     public void Start()
     {
@@ -32,74 +32,20 @@ public class PreviewAntiBodyController : MonoBehaviour, ITouchCommand
         _data = l_data;
         _image.sprite = Resources.Load<Sprite>(_data.viewImageUrl);
         _tfName.text = _data.name;
-    }
 
-    public void ClickedEvent()
-    {
-        if (_selected)
-        {
-            ReturnAntiBody();
-        }
-        else
-        {
-            SelectAntiBody();
-        }
-    }
-    //delegate
-    private void DegateListener()
-    {
-        PrefabCreatorManager.Instance.DestroyPrefab(gameObject);
+        if (!gameObject.active) {
+            gameObject.SetActive(true);
+        };
     }
 
     //user select this defender item 
-    private void SelectAntiBody()
+    protected override void Hold()
     {
-        _selected = true;
-        //TODO call method to selected anti body
-    }
-    //user return to list this defender item
-    private void ReturnAntiBody()
-    {
-        _selected = false;
-        //TODO call method to return anti body
+        
     }
 
-    public bool selected
+    protected override void Click()
     {
-        set
-        {
-            _selected = value;
-            _image.color = _selected ? Color.black : Color.white;
-        }
-    }
-
-    /*ITouchCommand release 
-     * */
-    public bool draggable
-    {
-        get
-        {
-            return true;
-        }
-    }
-
-    public void TouchClick()
-    {
-
-    }
-
-    public void TouchMoved(Vector3 movedPosition)
-    {
-
-    }
-
-    public void TouchStartDrag()
-    {
-        //TODO show view with info 
-    }
-
-    public void TouchStopDrag()
-    {
-        //TODO hide view with info 
+        UIModel.Instance.mainMenuController.SelectAntiBody(_data.id);
     }
 }

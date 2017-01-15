@@ -4,14 +4,12 @@ using UnityEngine.UI;
  * Controller of prefab selected antibody view 
  * 
  * */
-public class SelectedAntiBodyController : MonoBehaviour, ITouchCommand
+public class SelectedAntiBodyController : UiElementTouchableController
 {
     [SerializeField]
     private Image _image;
-
     //static data of current anti body
     private AntiBodyVO _data;
-
     public void Start()
     {
         if (_image == null)
@@ -25,7 +23,7 @@ public class SelectedAntiBodyController : MonoBehaviour, ITouchCommand
         _data = l_data;
         if (_data == null)
         {
-            _image.sprite = null;
+            _image.sprite = Resources.Load<Sprite>(UrlImages.emptyAntiBody);
         }
         else
         {
@@ -33,52 +31,20 @@ public class SelectedAntiBodyController : MonoBehaviour, ITouchCommand
         }
     }
 
-    public void ClickEvent()
-    {
-        //TODO call method in mainMenu 
-    }
-
-    public string id
+    public bool isEmpty
     {
         get
         {
-            if (_data == null)
-            {
-                return "";
-            }
-
-            return _data.id;
+            return _data == null;
         }
-
     }
-    
-    /*ITouchCommand release 
-     * */
-    public bool draggable
+
+    protected override void Click()
     {
-        get
+        if (_data != null)
         {
-            return true;
+            UIModel.Instance.mainMenuController.ReturnAntiBody(_data.id);
+            SetData(null);
         }
-    }
-
-    public void TouchClick()
-    {
-
-    }
-
-    public void TouchMoved(Vector3 movedPosition)
-    {
-
-    }
-
-    public void TouchStartDrag()
-    {
-        //TODO show view with info 
-    }
-
-    public void TouchStopDrag()
-    {
-        //TODO hide view with info 
     }
 }
