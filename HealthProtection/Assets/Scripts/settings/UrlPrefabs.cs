@@ -11,6 +11,7 @@ public class UrlPrefabs
         private const string ANTI_BODY_PREVIEW_ITEM = "AntiBodyPreviewItem";
         private const string SELECTED_ANTI_BODY_ITEM = "SelectedAntiBodyItem";
         private const string VIRUS_PREVIEW_ITEM = "VirusPreviewItem";
+        private const string GUI_SELECTED_ANI_BODY = "GuiSelectedAntiBody";
     /// </summary>
     private const string PREFAB_NAME_PARALLAX = "Parallax";
 
@@ -26,8 +27,15 @@ public class UrlPrefabs
     private const string ANTIBODY = "antiBodies/";
     private const string BODY = "bodies/";
     private const string ELEMENTS = "elements/";
-    
+
     //ui 
+    public static string guiSelectedAntiBody
+    {
+        get
+        {
+            return PREFABS_FOLDER + ELEMENTS + GUI_SELECTED_ANI_BODY;
+        }
+    }
     public static string antiBodyPreviewItem
     {
         get

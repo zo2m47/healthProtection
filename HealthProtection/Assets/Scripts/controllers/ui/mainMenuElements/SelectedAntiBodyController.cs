@@ -44,7 +44,6 @@ public class SelectedAntiBodyController : UiElementTouchableController
         if (_data != null)
         {
             UIModel.Instance.mainMenuController.ReturnAntiBody(_data.id);
-            SetData(null);
         }
     }
 }

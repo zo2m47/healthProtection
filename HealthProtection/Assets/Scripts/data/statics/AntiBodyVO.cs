@@ -10,6 +10,9 @@ public class AntiBodyVO:DataVO
     [XmlAttribute("speed")]
     public int speed;
 
+    [XmlAttribute("reloadDuration")]
+    public int reloadDuration;
+
     //attack power
     [XmlAttribute("attack")]
     public int attack;

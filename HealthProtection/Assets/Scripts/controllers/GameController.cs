@@ -15,9 +15,11 @@ public class GameController : ControllerSingleTone<GameController>
     private IRoundGameController _roundController;
     private ICoreGameController _coreController;
 
-    private string _selectedAntiBody = "antiBody1";
+    private List<string> _selectedAntiBodiesId = new List<string>();
+    public List<string> selectedAntiBodiesId { get { return _selectedAntiBodiesId; } }
+
     //start round play 
-    public void StartRound(string roundId)
+    public void StartRound(string roundId,List<string> l_selectedAntiBodiesId)
     {
         //set deactiv only drag for input controller
         InputController.Instance.justOnlyDragInWorld = false;
@@ -36,9 +38,10 @@ public class GameController : ControllerSingleTone<GameController>
         _coreController = PrefabCoreCreator.CreatCore(coreData);
         _coreController.SetData(coreData);
         //
+        _selectedAntiBodiesId = l_selectedAntiBodiesId;
         StartCoroutine(RoundLoading());
     }
-
+    
     private IEnumerator RoundLoading()
     {
         Debug.Log("Start loading");
@@ -48,7 +51,7 @@ public class GameController : ControllerSingleTone<GameController>
         _roundController.StartRound();
         _roundPlaying = true;
     }
-
+    
     /*work with core 
      * */
     //get core position
@@ -81,16 +84,25 @@ public class GameController : ControllerSingleTone<GameController>
         _roundPlaying = false;
     }
 
-    /* work with Attack
+    /* work with Antibodies
      * */
      //input manager tell about touch in display
     public void TouchCordinat(Vector3 touchPosition)
     {
-        if (_roundPlaying && _selectedAntiBody!="")
+        if (_roundPlaying)
         {
-            CreatAntiBodyPrefab(StaticDataModel.Instance.GetAntiBodyById(_selectedAntiBody), new AttackDirectionVO(touchPosition));
+            string antyBodyId = UIModel.Instance.guiController.TryShootAntyBody();
+            if (antyBodyId!="")
+            {
+                CreatAntiBodyPrefab(StaticDataModel.Instance.GetAntiBodyById(antyBodyId), new AttackDirectionVO(touchPosition));
+            } else
+            {
+                //TODO canot creat instance bc cooldow no ready 
+                
+            }
         }
     }
+
     //creat prefab
     private void CreatAntiBodyPrefab(AntiBodyVO data, AttackDirectionVO directionData)
     {

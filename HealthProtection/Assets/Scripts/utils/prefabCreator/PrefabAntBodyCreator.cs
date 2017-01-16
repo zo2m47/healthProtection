@@ -22,4 +22,10 @@ public class PrefabAntBodyCreator
         return PrefabCreatorManager.Instance.InstanceComponent<SelectedAntiBodyController>(prefabUrl, Vector3.zero, go, 1, 1, false, false);
     }
 
+    //creat instance for GUI 
+    public static GuiAntiBodyController CreatGuiAntiBody(GameObject go)
+    {
+        string prefabUrl = UrlPrefabs.guiSelectedAntiBody;
+        return PrefabCreatorManager.Instance.InstanceComponent<GuiAntiBodyController>(prefabUrl, Vector3.zero, go, 1, 1, false, false);
+    }
 }

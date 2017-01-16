@@ -146,7 +146,7 @@ public class MainMenuController : UIController
     {
         if (_selectedRoundId!="")
         {
-            GameController.Instance.StartRound(_selectedRoundId);
+            GameController.Instance.StartRound(_selectedRoundId,_antiBodySelectedId);
         } else
         {
             LoggingManager.AddErrorToLog("Try start round, but _selectedRoundId is empty");
@@ -365,13 +365,23 @@ public class MainMenuController : UIController
     //player return antibody 
     public void ReturnAntiBody(string antiBodyId)
     {
-        for (int i = 0;i<_antiBodySelectedId.Count;i++)
+        int i;
+        for ( i= 0;i<_antiBodySelectedId.Count;i++)
         {
             if (_antiBodySelectedId[i] == antiBodyId)
             {
                 _antiBodySelectedId.RemoveAt(i);
-                return;
+                break;
             }
+        }
+        for (i = 0; i < _antiBodySelectedId.Count; i++)
+        {
+            _antiBodySelectedList[i].SetData(StaticDataModel.Instance.GetAntiBodyById(_antiBodySelectedId[i]));
+        }
+
+        for (;i< _antiBodySelectedList.Count; i++)
+        {
+            _antiBodySelectedList[i].SetData(null);
         }
         LoggingManager.AddErrorToLog("Try return antibody " + antiBodyId + " but player didnt selected this antibody");
     }
