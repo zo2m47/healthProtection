@@ -94,7 +94,7 @@ public class GUIController : UIController
 
     public void SelectNewAntiBody(int newUicIndificatorOfSelectedAntiBody)
     {
-        if (_unicIndificatorOfSelectedAntiBody!=0 && newUicIndificatorOfSelectedAntiBody!= _unicIndificatorOfSelectedAntiBody)
+        if (newUicIndificatorOfSelectedAntiBody!= _unicIndificatorOfSelectedAntiBody)
         {
             for (int i = 0; i < _guiAntiBodySelectedList.Count; i++)
             {

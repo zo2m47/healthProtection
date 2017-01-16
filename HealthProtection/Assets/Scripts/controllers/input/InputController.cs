@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 /**
- * Controll of input 
- * */
+* Controll of input 
+* */
 public class InputController : ControllerSingleTone<InputController>, ITouchCommand
 {
     private const int START_DRAG_TIMER = 10;

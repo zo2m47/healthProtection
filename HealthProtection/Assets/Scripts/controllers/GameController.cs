@@ -21,6 +21,7 @@ public class GameController : ControllerSingleTone<GameController>
     //start round play 
     public void StartRound(string roundId,List<string> l_selectedAntiBodiesId)
     {
+        _selectedAntiBodiesId = l_selectedAntiBodiesId;
         //set deactiv only drag for input controller
         InputController.Instance.justOnlyDragInWorld = false;
 
@@ -38,7 +39,6 @@ public class GameController : ControllerSingleTone<GameController>
         _coreController = PrefabCoreCreator.CreatCore(coreData);
         _coreController.SetData(coreData);
         //
-        _selectedAntiBodiesId = l_selectedAntiBodiesId;
         StartCoroutine(RoundLoading());
     }
     
