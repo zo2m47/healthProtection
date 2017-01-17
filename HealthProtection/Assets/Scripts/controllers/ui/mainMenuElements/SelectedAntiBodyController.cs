@@ -41,6 +41,7 @@ public class SelectedAntiBodyController : UiElementTouchableController
 
     protected override void Click()
     {
+        base.Click();
         if (_data != null)
         {
             UIModel.Instance.mainMenuController.ReturnAntiBody(_data.id);

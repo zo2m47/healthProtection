@@ -71,12 +71,12 @@ public class UiElementTouchableController : MonoBehaviour, IPointerDownHandler, 
     
     protected virtual void Hold()
     {
-        Debug.Log("Hold");
+        InputController.Instance.ClickedInUiElement();
     }
     
     protected virtual void Click()
     {
-        Debug.Log("Clicked");
+        InputController.Instance.ClickedInUiElement();
     }
 
 }

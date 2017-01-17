@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ public class InputController : ControllerSingleTone<InputController>, ITouchComm
     //in main menu 
     private bool _justOnlyDragInWorld = false;
     public bool justOnlyDragInWorld{set{_justOnlyDragInWorld = value;}}
+
+    // UI element was touched 
+    private bool _uiELementWasTouched = false;
 
     //take touch position, after touch started, call frome child
     protected void TouchedInPosition(Vector3 startPosition)
@@ -50,6 +54,30 @@ public class InputController : ControllerSingleTone<InputController>, ITouchComm
         }
     }
 
+    /*
+    If user click in UI elements 
+    */
+    public void ClickedInUiElement()
+    {
+        _uiELementWasTouched = true;
+        if (_draging)
+        {
+            TouchStopDrag();
+        }
+        _touched = false;
+
+        StartCoroutine(DontCatchTounch());
+    }
+
+    private IEnumerator DontCatchTounch()
+    {
+        yield return null;
+        _uiELementWasTouched = false;
+        yield break;
+    }
+
+
+    //ray cast
     protected void GetHitRay()
     {
         _hit = Physics2D.Raycast(_newTouchPosition, Vector2.zero);

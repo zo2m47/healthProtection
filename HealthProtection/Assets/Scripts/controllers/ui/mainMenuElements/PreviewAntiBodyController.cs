@@ -41,11 +41,12 @@ public class PreviewAntiBodyController : UiElementTouchableController
     //user select this defender item 
     protected override void Hold()
     {
-        
+        base.Hold();
     }
 
     protected override void Click()
     {
+        base.Click();
         UIModel.Instance.mainMenuController.SelectAntiBody(_data.id);
     }
 }

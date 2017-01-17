@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /*
 * Logic of antibody element in GUI menu 
 */
-public class GuiAntiBodyController : UiElementTouchableController, ITouchCommand {
+public class GuiAntiBodyController : UiElementTouchableController {
     private static int _s_unicalId = 1;
     [SerializeField]
     private Image _antyBodyImage;
@@ -48,6 +48,7 @@ public class GuiAntiBodyController : UiElementTouchableController, ITouchCommand
 
     protected override void Click()
     {
+        base.Click();
         if (_data!=null)
         {
             //call method that this element was selected 
@@ -92,36 +93,6 @@ public class GuiAntiBodyController : UiElementTouchableController, ITouchCommand
         get
         {
             return _data.id;
-        }
-    }
-    /*
-     * ITouchCommand methods
-     * */
-    public void TouchClick()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void TouchMoved(Vector3 movedPosition)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void TouchStartDrag()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void TouchStopDrag()
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool draggable
-    {
-        get
-        {
-            return false;
         }
     }
 }
