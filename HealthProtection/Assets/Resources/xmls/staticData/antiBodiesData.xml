@@ -4,6 +4,7 @@
     <!--attack - сила атаки антитела-->
     <!--speed - скорость атитела-->
     <!--view - имя префаба-->
+    <!--reloadDuration - рвемя перезагрузки-->
     <element id ="antiBody1" speed="500" attack="1" view="AntiBody1" reloadDuration="3"/>
     <element id ="antiBody2" speed="500" attack="2" view="AntiBody1" reloadDuration="4"/>
     <element id ="antiBody3" speed="500" attack="3" view="AntiBody1" reloadDuration="4"/>

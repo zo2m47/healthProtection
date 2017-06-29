@@ -1,15 +1,11 @@
 ﻿using System;
 using UnityEngine;
-public class PopUpController:MonoBehaviour
+public class PopUpController:MonoBehaviour, IPopUpController
 {
-    public virtual PopUpNameEnum popupName
-    {
-        get
-        {
-            return PopUpNameEnum.notIdentified;
-        }
-    }
-
+    /* IPopUpController r
+     * */
+    public virtual PopUpNameEnum popupName { get { return PopUpNameEnum.notIdentified; } }
+    
     public virtual void Activate()
     {
         if (!gameObject.active)
@@ -24,5 +20,15 @@ public class PopUpController:MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public virtual void SetData(object someData)
+    {
+        
+    }
+
+    protected virtual void SetDefaultSettings()
+    {
+
     }
 }

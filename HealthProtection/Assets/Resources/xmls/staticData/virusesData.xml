@@ -6,5 +6,7 @@
     <!--speed - скорость передвижения вируса-->
     <!--view - имя префаба-->
     <element id ="virus1" attack="1" health="1" speed ="50" view="Virus1"/>
+    <element id ="virus2" attack="1" health="3" speed ="20" view="Virus1"/>
+    <element id ="virus3" attack="1" health="1" speed ="70" view="Virus1"/>
   </elementList>
  </data> 

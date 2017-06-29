@@ -99,10 +99,14 @@ public class MainMenuController : UIController
     }
     protected override void SetDefaultSetting()
     {
-        _bodyIndex = 0;
-        _selectedRoundId = "";
-        //delete parallax 
-        ParallaxManager.Instance.ResetAllParallax();
+        
+        if (_bodyViewController != null)
+        {
+            PrefabCreatorManager.Instance.DestroyPrefab(_bodyViewController.gameObject);
+            _bodyViewController = null;
+        }
+            //delete parallax 
+            ParallaxManager.Instance.ResetAllParallax();
 
         if (_bodyList.Count == 0)
         {
@@ -146,7 +150,7 @@ public class MainMenuController : UIController
     {
         if (_selectedRoundId!="")
         {
-            GameController.Instance.StartRound(_selectedRoundId,_antiBodySelectedId);
+            GameController.Instance.SetRoundData(_selectedRoundId,_antiBodySelectedId);
         } else
         {
             LoggingManager.AddErrorToLog("Try start round, but _selectedRoundId is empty");
@@ -190,10 +194,7 @@ public class MainMenuController : UIController
             {
                 PrefabCreatorManager.Instance.DestroyPrefab(_bodyViewController.gameObject);
                 _bodyViewController = PrefabBodyCreator.CreatBodyController(_bodyList[_bodyIndex]);
-            } else
-            {
-                _bodyViewController.gameObject.SetActive(true);
-            }
+            } 
         }
         else
         {
@@ -209,6 +210,7 @@ public class MainMenuController : UIController
         if (_bodyViewController!=null)
         {
             PrefabCreatorManager.Instance.DestroyPrefab(_bodyViewController.gameObject);
+            _bodyViewController = null;
         }
 
         ResetViewList();

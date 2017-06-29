@@ -23,5 +23,6 @@ public class ParallaxManager: ManagerSingleTone<ParallaxManager>
         {
             _parallaxList[i].ResetParallax();
         }
+        _parallaxList = new List<ParallaxController>();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PopUpManager : UIController
 {
     [SerializeField]
-    private PopUpController[] _popUpList;
+    private IPopUpController[] _popUpList;
 
     public int popUpListLength = 0;
    
@@ -11,7 +11,7 @@ public class PopUpManager : UIController
     {   
         if (_popUpList == null)
         {
-            _popUpList = gameObject.GetComponentsInChildren<PopUpController>();
+            _popUpList = gameObject.GetComponentsInChildren<IPopUpController>();
             popUpListLength = _popUpList.Length;
         }
         base.GameObjectActivate();
@@ -35,13 +35,17 @@ public class PopUpManager : UIController
         }
     }
     //show selected popup and hide other popups 
-    public void ShovePopUp(PopUpNameEnum popUpName)
+    public void ShovePopUp(PopUpNameEnum popUpName,object someData = null)
     {
         Activate();
         for (int i = 0;i<_popUpList.Length;i++)
         {
             if (_popUpList[i].popupName == popUpName)
             {
+                if (someData != null)
+                {
+                    _popUpList[i].SetData(someData);
+                }
                 _popUpList[i].Activate();
             } else
             {

@@ -54,7 +54,6 @@ public class CameraNavigationManager : ManagerSingleTone<CameraNavigationManager
 
         if (_setMaxCameraSize)
         {
-            _setMaxCameraSize = false;
             SetDefaultSettings();
         }
         //set pixels in unit like in background 
@@ -68,7 +67,7 @@ public class CameraNavigationManager : ManagerSingleTone<CameraNavigationManager
             _targetWidth = _minZoomWidth;
         }
 
-        if (_targetWidth != _oldTargetWidth || CheckOnNewBGSize() || changeViewProportions)
+        if (CheckOnNewBGSize() || _targetWidth != _oldTargetWidth || changeViewProportions)
         {
             int height = Mathf.RoundToInt(_targetWidth / (float)Screen.width * Screen.height);
             
@@ -77,13 +76,16 @@ public class CameraNavigationManager : ManagerSingleTone<CameraNavigationManager
             {
                 //LoggingManager.AddErrorToLog("HEIGHT TO BIG");
                 ZoomCameraIn(CAMERA_ZOOM_SPEED);
+                Update();
                 return;
+
             }
             //check on size camera and bg 
             if (_targetWidth / _pixelsToUnits > BackgroundController.Instance.bgSize.x)
             {
                 //LoggingManager.AddErrorToLog("WIDTH TO BIG");
                 ZoomCameraIn(CAMERA_ZOOM_SPEED);
+                Update();
                 return;
             }
 
@@ -153,14 +155,9 @@ public class CameraNavigationManager : ManagerSingleTone<CameraNavigationManager
 
     public void SetDefaultSettings()
     {
-        if(BackgroundController.Instance.bgWidth<BackgroundController.Instance.bgHeight)
-        {
-            _targetWidth = (int)BackgroundController.Instance.bgWidth;
-        }
-        else
-        {
-            _targetWidth = (int)BackgroundController.Instance.bgHeight;
-        }
+        _setMaxCameraSize = false;
+        _targetWidth = (int)BackgroundController.Instance.bgWidth;
+
         _mainCamera.transform.position = new Vector3(0, 0, _mainCamera.transform.position.z);
         _newPosition = new Vector3(0, 0, _mainCamera.transform.position.z); 
         Update();

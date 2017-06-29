@@ -34,37 +34,42 @@ public class UIModel : ModelSingleTone<UIModel>
         yield break;
     }
 
-    /*show UI view 
-    */
-    //start game, hide MainMenuController and show GUIMenu
-    public void ShowGUI()
+    //hide all with exeption
+    private void HideAllWitjExp(UINamesEnum eptName)
     {
-        GetUiByName(UINamesEnum.mainMenu).DeActivate();
-
-        GetUiByName(UINamesEnum.gui).Activate();
-    }
-
-    //hide all and show main meenu
-    public void ShowMainMenu()
-    {
-        InputController.Instance.justOnlyDragInWorld = true;
         for (int i = 0; i < _uiList.Length; i++)
         {
-            if (_uiList[i].uiName == UINamesEnum.mainMenu)
+            if (_uiList[i].uiName == eptName)
             {
                 _uiList[i].Activate();
-            } else
+            }
+            else
             {
                 _uiList[i].DeActivate();
             }
         }
     }
 
+    /*show UI view 
+    */
+    //start game, hide MainMenuController and show GUIMenu
+    public void ShowGUI()
+    {
+        HideAllWitjExp(UINamesEnum.gui);
+    }
+
+    //hide all and show main meenu
+    public void ShowMainMenu()
+    {
+        InputController.Instance.justOnlyDragInWorld = true;
+        HideAllWitjExp(UINamesEnum.mainMenu);
+    }
+
     /*show popup dont hide currend UI just show selected popup
     */
     public void ShowPopUp(PopUpNameEnum popupName)
     {
-        GetUiByName(UINamesEnum.mainMenu).DeActivate();
+        HideAllWitjExp(UINamesEnum.popup);
         popUpManager.ShovePopUp(popupName);
     }
 

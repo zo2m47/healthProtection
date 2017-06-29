@@ -7,13 +7,12 @@ using UnityEngine;
 public class RoundBaseController : MonoBehaviour, IRoundGameController, IRecyle
 {
     private RoundVO _roundStaticData;
-    private IEnumerator _attackCounter;
     private int _attacksLeft;
     //where key is time when must start
     private Dictionary<int, List<AttackSettingVO>> _attack;
     private void RemoveGameElementDelegate()
     {
-
+        PrefabCreatorManager.Instance.DestroyPrefab(gameObject);
     }
 
     /* Game logic 
@@ -43,6 +42,7 @@ public class RoundBaseController : MonoBehaviour, IRoundGameController, IRecyle
             yield return new WaitForSeconds(1);
             roundSecond++;
         }
+        yield break;
     }
 
     private void AttackProgress()
@@ -77,19 +77,16 @@ public class RoundBaseController : MonoBehaviour, IRoundGameController, IRecyle
     }
     /*IRoundGameController
      * */
+    
     public void SetData(RoundVO data)
     {
-        if (_attackCounter == null)
-        {
-            _attackCounter = AttackCounter();
-        }
         _roundStaticData = data;
         InitAttacks();
     }
     
     public void StartRound()
     {
-        StartCoroutine(_attackCounter);
+        StartCoroutine(AttackCounter());
     }
     /*IRecyle
      * */
@@ -101,7 +98,7 @@ public class RoundBaseController : MonoBehaviour, IRoundGameController, IRecyle
     public void Shutdown()
     {
         GameController.Instance.removeAllGameElementsDelegate -= RemoveGameElementDelegate;
-        StopCoroutine(_attackCounter);
+        StopCoroutine(AttackCounter());
     }
 }
 

@@ -17,27 +17,36 @@ public class GameController : ControllerSingleTone<GameController>
 
     private List<string> _selectedAntiBodiesId = new List<string>();
     public List<string> selectedAntiBodiesId { get { return _selectedAntiBodiesId; } }
+    private RoundVO _roundData;
 
-    //start round play 
-    public void StartRound(string roundId,List<string> l_selectedAntiBodiesId)
-    {
+    public void SetRoundData(string roundId, List<string> l_selectedAntiBodiesId) { 
         _selectedAntiBodiesId = l_selectedAntiBodiesId;
+        _roundData = StaticDataModel.Instance.GetRoundById(roundId);
+        StartRound();
+    }
+    //reset round from GUI 
+    public void ResetRound()
+    {
+        StartRound();
+    }
+    //start round play 
+    private void StartRound()
+    {
         //set deactiv only drag for input controller
         InputController.Instance.justOnlyDragInWorld = false;
 
-        RoundVO roundData = StaticDataModel.Instance.GetRoundById(roundId);
         //change bg 
-        ParallaxManager.Instance.InitParallaxData(roundData);
-        BackgroundController.Instance.InitRoundBg(roundData);
-
-        UIModel.Instance.ShowGUI();
+        ParallaxManager.Instance.InitParallaxData(_roundData);
+        BackgroundController.Instance.InitRoundBg(_roundData);
         //creat instance of round 
-        _roundController = PrefabRoundCreator.CreatRoundGameController(roundData);
-        _roundController.SetData(roundData);
+        _roundController = PrefabRoundCreator.CreatRoundGameController(_roundData);
+        _roundController.SetData(_roundData);
         //creat instance of core 
-        CoreVO coreData = StaticDataModel.Instance.GetCoreById(roundData.core);
+        CoreVO coreData = StaticDataModel.Instance.GetCoreById(_roundData.core);
         _coreController = PrefabCoreCreator.CreatCore(coreData);
         _coreController.SetData(coreData);
+        
+        UIModel.Instance.ShowGUI();
         //
         StartCoroutine(RoundLoading());
     }
@@ -65,28 +74,33 @@ public class GameController : ControllerSingleTone<GameController>
     //core call this method when core died
     public void CoreDied()
     {
-        Debug.Log("TODO CoreDied");
+        UIModel.Instance.ShowPopUp(PopUpNameEnum.gameOver);
+        FinishRound();
     }
 
     /*work with round 
      * */
     //exit from round 
-    private void ExitRound()
+    private void FinishRound()
     {
         if (removeAllGameElementsDelegate != null)
         {
             removeAllGameElementsDelegate();
         }
+        _roundPlaying = false;
     }
-
-    public void StopRound()
+    
+    public void PauseGame()
     {
         _roundPlaying = false;
     }
-
+    public void ContinueGame()
+    {
+        _roundPlaying = true;
+    }
     /* work with Antibodies
      * */
-     //input manager tell about touch in display
+    //input manager tell about touch in display
     public void TouchCordinat(Vector3 touchPosition)
     {
         if (_roundPlaying)

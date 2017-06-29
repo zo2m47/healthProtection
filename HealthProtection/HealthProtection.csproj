@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\controllers\fonControllers\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\controllers\fonControllers\ParallaxController.cs" />
     <Compile Include="Assets\Scripts\controllers\gameElementControllers\antiBodyControllers\AntiBodyBaseGameController.cs" />
+    <Compile Include="Assets\Scripts\controllers\gameElementControllers\antiBodyControllers\TestAntyBodyGameController.cs" />
     <Compile Include="Assets\Scripts\controllers\gameElementControllers\antiBodyControllers\property\AntiBodyAttackPC.cs" />
     <Compile Include="Assets\Scripts\controllers\gameElementControllers\antiBodyControllers\property\AntiBodyBasePC.cs" />
     <Compile Include="Assets\Scripts\controllers\gameElementControllers\antiBodyControllers\property\AntiBodyDiePC.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Assets\Scripts\data\statics\VirusVO.cs" />
     <Compile Include="Assets\Scripts\interfaces\ICoreGameController.cs" />
     <Compile Include="Assets\Scripts\interfaces\IInitilizationProcess.cs" />
+    <Compile Include="Assets\Scripts\interfaces\IPopUpController.cs" />
     <Compile Include="Assets\Scripts\interfaces\IRecyle.cs" />
     <Compile Include="Assets\Scripts\interfaces\IRoundGameController.cs" />
     <Compile Include="Assets\Scripts\interfaces\ITouchCommand.cs" />

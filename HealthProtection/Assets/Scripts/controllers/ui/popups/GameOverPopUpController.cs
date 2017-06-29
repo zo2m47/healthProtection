@@ -26,9 +26,15 @@ public class GameOverPopUpController : PopUpController
         base.Activate();
         _message.text = "GAME OVER FOR YOU Bro";
     }
-
+    /*Buttons clicked 
+     * */
     public void GoToMenuButtonClicked()
     {
         UIModel.Instance.ShowMainMenu();
+    }
+
+    public void RestartButtonClicked()
+    {
+        GameController.Instance.ResetRound();
     }
 }
